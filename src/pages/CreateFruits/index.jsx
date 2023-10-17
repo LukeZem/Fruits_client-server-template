@@ -7,8 +7,13 @@ const CreateFruits = () => {
         color: "",
         readyToEat: false
     })
+    const [err, setErr] = useState("");
     const handleSubmit = (e) => {
         e.preventDefault();
+        if (!fruitData.name || !fruitData.color) {
+            setErr("invalid input")
+            return;
+        }
         console.log(fruitData);
         axios({
             method: "POST",
@@ -16,11 +21,18 @@ const CreateFruits = () => {
             data: fruitData // YOU WILL FIND THIS DATA IN ***req.body*** OF THE ROUTE
         }).then((res) => {
             console.log(res);
+            setFruitData({
+                name: "",
+                color: "",
+                readyToEat: false
+            })
+            setErr("");
         })
     }
     return (
         <div>
             <h1>New Fruit page</h1>
+            {err && <div>{err}</div>}
             <form onSubmit={handleSubmit}>
                 Name: <input type="text" name="name" value={fruitData.name} onChange={(e) => setFruitData({ ...fruitData, name: e.target.value })} />
                 <br />

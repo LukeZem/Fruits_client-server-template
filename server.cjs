@@ -31,8 +31,7 @@ app.get("/", (req, res) => {
 
 app.post("/fruits", (req,res) => {
     console.log(req.body);
-    let fruit = req.body;
-    fruits.push(fruit);
+    fruits.push(req.body);
     res.send("Route is good")
 })
 
