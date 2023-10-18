@@ -7,6 +7,7 @@ const fruitsSchema = new mongoose.Schema(
     {
         name: String,
         color: String,
+        age: Number,
         readyToEat: Boolean
     },
     {
